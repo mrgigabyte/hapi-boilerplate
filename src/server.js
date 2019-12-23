@@ -1,7 +1,9 @@
+import 'core-js/stable'
+import 'regenerator-runtime/runtime'
 const Hapi = require('@hapi/hapi')
 const config = require('./config/config')
 
-console.log(config, config.host, config.port)
+//  console.log(config, config.host, config.port)
 
 const server = new Hapi.Server({
   host: config.app.host,
