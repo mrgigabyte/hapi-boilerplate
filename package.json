@@ -8,8 +8,14 @@
     "start": "gulp default",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "mrgigabyte",
+  "keywords": [
+    "javascript",
+    "hapi",
+    "gulp",
+    "nodejs"
+  ],
+  "license": "MIT",
   "dependencies": {
     "@hapi/hapi": "^18.4.0",
     "regenerator-runtime": "^0.13.3",

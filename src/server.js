@@ -1,9 +1,10 @@
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
+const routes = require('./routes')
 const Hapi = require('@hapi/hapi')
 const config = require('./config/config')
 
-//  console.log(config, config.host, config.port)
+// console.log(config, config.host, config.port)
 
 const server = new Hapi.Server({
   host: config.app.host,
@@ -23,3 +24,22 @@ const launch = async () => {
 }
 
 launch()
+
+// module.exports = server
+
+// server.route({
+//   method: 'GET',
+//   path: '/',
+//   handler: (request, h) => {
+//     console.log('asdsads')
+//     return 'I am the home route'
+//   }
+// })
+
+routes.init(server)
+
+server.events.on('request', (event, tags) => {
+  if (tags.error) {
+    console.log(`Server error: ${tags}`)
+  }
+})

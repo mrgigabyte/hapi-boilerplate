@@ -4,7 +4,7 @@ const env = process.env.NODE_ENV // 'dev' or 'test'
 const dev = {
   app: {
     host: 'localhost',
-    port: 3000
+    port: 8080
   },
   db: {
     host: 'localhost',

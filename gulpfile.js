@@ -55,7 +55,7 @@ gulp.task('build', gulp.series('eslint', (done) => {
 
 // Build the project when there are changes in Javascript files
 
-gulp.task('develop', function (done) {
+gulp.task('develop', (done) => {
   if (devBuild) {
     return nodemon({
       script: 'build/src/server.js',
@@ -67,21 +67,19 @@ gulp.task('develop', function (done) {
       ],
       tasks: ['build']
     })
-      .on('restart', function () {
+      .on('restart', () => {
         done()
         console.log('restarted the build process')
       })
-      .on('crash', function () {
+      .on('crash', () => {
         done()
         console.error('\nApplication has crashed!\n')
       })
-    done()
   }
 })
 
-gulp.task('default', gulp.series('build', 'develop'), (done) => {
+gulp.task('default', gulp.series('build', 'develop'), () => {
   return gulp.watch('src/**/*', { events: 'all' }, function (cb) {
     cb()
   })
-  done()
 })
