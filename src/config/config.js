@@ -1,5 +1,5 @@
 // config.js
-const env = process.env.NODE_ENV // 'dev' or 'test'
+const env = process.env.NODE_ENV // 'dev' or 'test' or 'prod'
 
 const dev = {
   app: {
@@ -13,10 +13,22 @@ const dev = {
   }
 }
 
+const prod = {
+  app: {
+    host: 'localhost',
+    port: 8080
+  },
+  db: {
+    host: 'localhost',
+    port: 27017,
+    name: 'test'
+  }
+}
+
 const test = {
   app: {
     host: 'localhost',
-    port: 3000
+    port: 8080
   },
   db: {
     host: 'localhost',
@@ -27,6 +39,7 @@ const test = {
 
 const config = {
   dev,
+  prod,
   test
 }
 

@@ -25,21 +25,10 @@ const launch = async () => {
 
 launch()
 
-// module.exports = server
-
-// server.route({
-//   method: 'GET',
-//   path: '/',
-//   handler: (request, h) => {
-//     console.log('asdsads')
-//     return 'I am the home route'
-//   }
-// })
+if (process.env.NODE_ENV !== 'prod') {
+  server.events.on('response', function (request) {
+    console.log(`[${new Date().toLocaleTimeString('en-US', { hour12: false })}] ${request.info.remoteAddress} : ${request.method.toUpperCase()} ${request.path} --> ${request.response.statusCode}  `)
+  })
+}
 
 routes.init(server)
-
-server.events.on('request', (event, tags) => {
-  if (tags.error) {
-    console.log(`Server error: ${tags}`)
-  }
-})
