@@ -29,12 +29,13 @@ Libraries which might be considered for future work:
 5. node-schedule
 6. handlebars
 7. swagger
-8. sequelize
+8. chai/mocha
 9. stream to promise
 
 Done:
 
 1. good
 2. winston
+3. sequelize
 
 winston transport logger: log files in the database/log-files or the console. 
