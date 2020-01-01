@@ -8,8 +8,10 @@ const dev = {
   },
   db: {
     host: 'localhost',
-    port: 27017,
-    name: 'db'
+    port: 5432,
+    name: 'mrgigabyte',
+    username: 'mrgigabyte',
+    password: 'abc@123'
   }
 }
 
@@ -20,8 +22,10 @@ const prod = {
   },
   db: {
     host: 'localhost',
-    port: 27017,
-    name: 'test'
+    port: 5432,
+    name: 'mrgigabyte',
+    username: 'mrgigabyte',
+    password: 'abc@123'
   }
 }
 

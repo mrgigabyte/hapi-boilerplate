@@ -20,3 +20,19 @@
 {"message":"This is a test message","level":"info","timestamp":"1/1/2020, 4:13:30 AM"}
 {"message":"This is a test message","level":"info","timestamp":"1/1/2020, 1:49:47 AM"}
 {"message":"This is a test message","level":"info","timestamp":"1/1/2020, 1:49:58 AM"}
+{"message":"This is a test message","level":"info","timestamp":"1/1/2020, 4:03:03 PM"}
+{"message":"This is a test message","level":"info","timestamp":"1/1/2020, 4:03:15 PM"}
+{"message":"This is a test message","level":"info","timestamp":"1/1/2020, 4:03:28 PM"}
+{"message":"This is a test message","level":"info","timestamp":"1/1/2020, 4:03:58 PM"}
+{"message":"This is a test message","level":"info","timestamp":"1/1/2020, 4:04:30 PM"}
+{"message":"This is a test message","level":"info","timestamp":"1/1/2020, 4:04:45 PM"}
+{"message":"This is a test message","level":"info","timestamp":"1/1/2020, 4:07:50 PM"}
+{"message":"This is a test message","level":"info","timestamp":"1/1/2020, 4:10:54 PM"}
+{"name":"SequelizeValidationError","errors":[{"message":"user.name cannot be null","type":"notNull Violation","path":"name","value":null,"origin":"CORE","instance":{"id":null,"updatedAt":"2020-01-01T17:36:00.107Z","createdAt":"2020-01-01T17:36:00.107Z"},"validatorKey":"is_null","validatorName":null,"validatorArgs":[]}],"level":"error","timestamp":"1/1/2020, 11:06:00 PM"}
+{"name":"SequelizeValidationError","errors":[{"message":"user.name cannot be null","type":"notNull Violation","path":"name","value":null,"origin":"CORE","instance":{"id":null,"updatedAt":"2020-01-01T17:38:00.160Z","createdAt":"2020-01-01T17:38:00.160Z"},"validatorKey":"is_null","validatorName":null,"validatorArgs":[]}],"level":"error","timestamp":"1/1/2020, 11:08:00 PM"}
+{"message":"Database & tables created!","level":"info","timestamp":"1/1/2020, 11:18:57 PM"}
+{"name":"SequelizeValidationError","errors":[{"message":"user.name cannot be null","type":"notNull Violation","path":"name","value":null,"origin":"CORE","instance":{"id":null,"updatedAt":"2020-01-01T17:49:16.606Z","createdAt":"2020-01-01T17:49:16.606Z"},"validatorKey":"is_null","validatorName":null,"validatorArgs":[]}],"level":"error","timestamp":"1/1/2020, 11:19:16 PM"}
+{"message":"Database & tables created!","level":"info","timestamp":"1/1/2020, 11:19:55 PM"}
+{"message":"Database & tables created!","level":"info","timestamp":"1/1/2020, 11:28:00 PM"}
+{"message":"Database & tables created!","level":"info","timestamp":"1/1/2020, 11:29:18 PM"}
+{"message":"Database & tables created!","level":"info","timestamp":"1/1/2020, 11:38:30 PM"}

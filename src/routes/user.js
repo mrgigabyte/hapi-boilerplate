@@ -1,4 +1,5 @@
-import logger from '../logger'
+const { logger } = require('../logger')
+const { User } = require('../sequelize')
 // const server = require('../server')
 
 // function log (request, reply) {
@@ -11,7 +12,7 @@ function log (request, h) {
 }
 
 export default function (server) {
-  server.route({
+  server.route([{
     method: 'GET',
     path: '/',
     config: {
@@ -23,5 +24,21 @@ export default function (server) {
         return 'I am the home route'
       }
     }
-  })
+  },
+  {
+    method: 'GET',
+    path: '/example',
+    config: {
+      handler: (request, h) => {
+        return User.create({ name: 'abc' })
+          .then((user) => {
+            return h.response(user)
+          }).catch(err => {
+            logger.error(err)
+            return h.response(err)
+          })
+      }
+    }
+  }
+  ])
 }

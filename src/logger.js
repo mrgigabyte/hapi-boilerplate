@@ -24,5 +24,6 @@ if (process.env.NODE_ENV !== 'prod') {
     format: winston.format.combine(winston.format.timestamp({ format: timezoned }), winston.format.colorize(), winston.format.simple())
   }))
 }
-
-export default logger
+module.exports = {
+  logger
+}
