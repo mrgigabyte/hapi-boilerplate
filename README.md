@@ -21,7 +21,7 @@ Minimal structural and lexical changes:
 
 
 Libraries which might be considered for future work:
-1. good
+<strike>1. good</strike>
 2. bcrypt
 3. boom 
 4. joi
