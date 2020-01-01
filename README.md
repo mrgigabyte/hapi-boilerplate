@@ -21,17 +21,20 @@ Minimal structural and lexical changes:
 
 
 Libraries which might be considered for future work:
-<strike>1. good</strike>
-2. bcrypt
-3. boom 
-4. joi
-5. jsonwebtoken            
-6. node-schedule
-7. handlebars
-8. swagger
-9. winston
-10. sequelize
-11. stream to promise
 
+1. bcrypt
+2. boom 
+3. joi
+4. jsonwebtoken            
+5. node-schedule
+6. handlebars
+7. swagger
+8. sequelize
+9. stream to promise
+
+Done:
+
+1. good
+2. winston
 
 winston transport logger: log files in the database/log-files or the console. 
