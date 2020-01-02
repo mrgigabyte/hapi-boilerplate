@@ -1,5 +1,4 @@
 const winston = require('winston')
-// const timestamp = () => +new Date()
 
 const timezoned = () => {
   return new Date().toLocaleString('en-US', {

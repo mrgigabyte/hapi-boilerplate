@@ -6,6 +6,7 @@ const Hapi = require('@hapi/hapi')
 const config = require('./config/config')
 const Inert = require('@hapi/inert')
 const Vision = require('@hapi/vision')
+const database = require('./sequelize')
 // const Pack = require('../../package.json')
 
 // console.log(config, config.host, config.port)
@@ -20,7 +21,6 @@ const pluginsToRegister = [Inert, Vision]
 
 const launch = async () => {
   try {
-
     // Registering Plugins
     plugins.forEach((pluginName) => {
       const plugin = (require('./plugins/' + pluginName)).default()
@@ -42,8 +42,6 @@ const launch = async () => {
 
 launch()
 
-
-
 // Logging all the requests on console
 if (process.env.NODE_ENV !== 'prod') {
   server.events.on('response', function (request) {
@@ -54,3 +52,4 @@ if (process.env.NODE_ENV !== 'prod') {
 // Initialising Routes and Database
 
 routes.init(server)
+database.init()

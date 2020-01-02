@@ -10,6 +10,7 @@ install gulp-cli globally (not necessary but recommended)
 make sure npm and node are set to latest (recommended)
 
 npm install
+
 `npm run fix` : fixing linting errors
 `npm run start`: script for running gulp. Make sure to mention the node environment using `NODE_ENV`
 
@@ -39,4 +40,5 @@ Done:
 2. winston
 3. sequelize
 4. swagger
+
 winston transport logger: log files in the database/log-files or the console. 
