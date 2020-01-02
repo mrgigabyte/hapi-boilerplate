@@ -25,7 +25,7 @@ gulp.task('clean', () => {
 // Compiling using babel.
 
 gulp.task('compile', () => {
-  return gulp.src('src/**/*')
+  return gulp.src('src/**/*.js')
     .pipe(babel({
       presets: ['@babel/preset-env']
     }))

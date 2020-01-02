@@ -4,10 +4,9 @@ import { loggers } from 'winston'
 const routes = require('./routes')
 const Hapi = require('@hapi/hapi')
 const config = require('./config/config')
-// const HapiSwagger = require('hapi-swagger')
 const Inert = require('@hapi/inert')
 const Vision = require('@hapi/vision')
-const Pack = require('../../package.json')
+// const Pack = require('../../package.json')
 
 // console.log(config, config.host, config.port)
 
@@ -24,8 +23,8 @@ const launch = async () => {
     // Registering Plugins
     plugins.forEach((pluginName) => {
       const plugin = (require('./plugins/' + pluginName)).default()
-      console.log(`Register Plugin ${plugin.info().name} v${plugin.info().version}`)
       pluginsToRegister.push(plugin.register())
+      console.log(`Registered Plugin ${plugin.info().name} v${plugin.info().version}`)
     })
 
     await server.register(pluginsToRegister)
@@ -38,7 +37,6 @@ const launch = async () => {
 
   console.log(server.info)
   console.log(`Server is running at ${server.info.uri}`)
-  console.log(Pack.version)
 }
 
 launch()

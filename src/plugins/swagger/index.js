@@ -19,8 +19,7 @@ export default () => {
     info: () => {
       return {
         name: 'Hapi-Swagger',
-        // version: Pack.depenencies['hapi - swagger']
-        version: '1.0.0'
+        version: Pack.dependencies['hapi-swagger']
       }
     }
   }
