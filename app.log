@@ -1,31 +1,4 @@
-{"message":"asdsadas","level":"error","timestamp":"2019-12-31T18:03:27.866Z"}
-{"message":"asdsadas","level":"error","timestamp":"2019-12-31T18:05:12.583Z"}
-{"message":"test2","level":"info","timestamp":"2019-12-31T18:05:12.588Z"}
-{"message":"asdsadas","level":"error","timestamp":"2019-12-31T18:05:12.724Z"}
-{"message":"test2","level":"info","timestamp":"2019-12-31T18:05:12.725Z"}
-{"message":"asdsadas","level":"error","timestamp":"2019-12-31T18:05:12.890Z"}
-{"message":"test2","level":"info","timestamp":"2019-12-31T18:05:12.891Z"}
-{"message":"This is a test message","level":"info","timestamp":"2019-12-31T19:48:17.423Z"}
-{"message":"This is a test message","level":"info","timestamp":"2019-12-31T19:54:36.985Z"}
-{"message":"This is a test message","level":"info","timestamp":"2019-12-31T19:55:30.722Z"}
-{"message":"This is a test message","level":"info","timestamp":"2019-12-31T19:55:48.187Z"}
-{"message":"This is a test message","level":"info","timestamp":"2019-12-31T19:55:48.568Z"}
-{"message":"This is a test message","level":"info","timestamp":"2019-12-31T19:55:48.923Z"}
-{"message":"This is a test message","level":"info","timestamp":"2019-12-31T19:56:06.780Z"}
-{"message":"This is a test message","level":"info","timestamp":"2019-12-31T19:56:07.018Z"}
-{"message":"This is a test message","level":"info","timestamp":"2019-12-31T19:56:07.175Z"}
-{"message":"This is a test message","level":"info","timestamp":"2019-12-31T19:56:07.354Z"}
-{"message":"This is a test message","level":"info","timestamp":"2019-12-31T19:56:07.547Z"}
-{"message":"This is a test message","level":"info","timestamp":"2019-12-31T19:56:07.733Z"}
-{"message":"This is a test message","level":"info","timestamp":"1/1/2020, 4:13:30 AM"}
-{"message":"This is a test message","level":"info","timestamp":"1/1/2020, 1:49:47 AM"}
-{"message":"This is a test message","level":"info","timestamp":"1/1/2020, 1:49:58 AM"}
-{"message":"This is a test message","level":"info","timestamp":"1/1/2020, 4:03:03 PM"}
-{"message":"This is a test message","level":"info","timestamp":"1/1/2020, 4:03:15 PM"}
-{"message":"This is a test message","level":"info","timestamp":"1/1/2020, 4:03:28 PM"}
-{"message":"This is a test message","level":"info","timestamp":"1/1/2020, 4:03:58 PM"}
-{"message":"This is a test message","level":"info","timestamp":"1/1/2020, 4:04:30 PM"}
-{"message":"This is a test message","level":"info","timestamp":"1/1/2020, 4:04:45 PM"}
+
 {"message":"This is a test message","level":"info","timestamp":"1/1/2020, 4:07:50 PM"}
 {"message":"This is a test message","level":"info","timestamp":"1/1/2020, 4:10:54 PM"}
 {"name":"SequelizeValidationError","errors":[{"message":"user.name cannot be null","type":"notNull Violation","path":"name","value":null,"origin":"CORE","instance":{"id":null,"updatedAt":"2020-01-01T17:36:00.107Z","createdAt":"2020-01-01T17:36:00.107Z"},"validatorKey":"is_null","validatorName":null,"validatorArgs":[]}],"level":"error","timestamp":"1/1/2020, 11:06:00 PM"}
@@ -36,3 +9,12 @@
 {"message":"Database & tables created!","level":"info","timestamp":"1/1/2020, 11:28:00 PM"}
 {"message":"Database & tables created!","level":"info","timestamp":"1/1/2020, 11:29:18 PM"}
 {"message":"Database & tables created!","level":"info","timestamp":"1/1/2020, 11:38:30 PM"}
+{"message":"Database & tables created!","level":"info","timestamp":"1/2/2020, 12:50:28 PM"}
+{"message":"Database & tables created!","level":"info","timestamp":"1/2/2020, 2:20:05 PM"}
+{"message":"Database & tables created!","level":"info","timestamp":"1/2/2020, 2:23:40 PM"}
+{"message":"Database & tables created!","level":"info","timestamp":"1/2/2020, 2:39:14 PM"}
+{"message":"Database & tables created!","level":"info","timestamp":"1/2/2020, 2:46:45 PM"}
+{"message":"Database & tables created!","level":"info","timestamp":"1/2/2020, 2:47:21 PM"}
+{"message":"Database & tables created!","level":"info","timestamp":"1/2/2020, 5:15:14 PM"}
+{"message":"Database & tables created!","level":"info","timestamp":"1/2/2020, 5:16:13 PM"}
+{"message":"Database & tables created!","level":"info","timestamp":"1/2/2020, 5:17:20 PM"}

@@ -2,42 +2,74 @@
 const env = process.env.NODE_ENV // 'dev' or 'test' or 'prod'
 
 const dev = {
-  app: {
+  server: {
     host: 'localhost',
-    port: 8080
+    port: 8080,
+    plugins: [
+      'swagger'
+    ]
   },
-  db: {
+  database: {
     host: 'localhost',
     port: 5432,
     name: 'mrgigabyte',
     username: 'mrgigabyte',
-    password: 'abc@123'
+    password: 'abc@123',
+    pool: {
+      min: 0,
+      max: 10,
+      acquire: 30000,
+      idle: 1000
+    },
+    dialect: 'postgres'
   }
 }
 
 const prod = {
-  app: {
+  server: {
     host: 'localhost',
-    port: 8080
+    port: 8080,
+    plugins: [
+      'swagger'
+    ]
   },
-  db: {
+  database: {
     host: 'localhost',
     port: 5432,
     name: 'mrgigabyte',
     username: 'mrgigabyte',
-    password: 'abc@123'
+    password: 'abc@123',
+    pool: {
+      min: 10,
+      max: 0,
+      acquire: 30000,
+      idle: 1000
+    },
+    dialect: 'postgres'
   }
 }
 
 const test = {
-  app: {
+  server: {
     host: 'localhost',
-    port: 8080
+    port: 8080,
+    plugins: [
+      'swagger'
+    ]
   },
-  db: {
+  database: {
     host: 'localhost',
-    port: 27017,
-    name: 'test'
+    port: 5432,
+    name: 'mrgigabyte',
+    username: 'mrgigabyte',
+    password: 'abc@123',
+    pool: {
+      min: 10,
+      max: 0,
+      acquire: 30000,
+      idle: 1000
+    },
+    dialect: 'postgres'
   }
 }
 
