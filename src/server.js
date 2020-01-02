@@ -20,6 +20,7 @@ const pluginsToRegister = [Inert, Vision]
 
 const launch = async () => {
   try {
+
     // Registering Plugins
     plugins.forEach((pluginName) => {
       const plugin = (require('./plugins/' + pluginName)).default()
@@ -41,6 +42,9 @@ const launch = async () => {
 
 launch()
 
+
+
+// Logging all the requests on console
 if (process.env.NODE_ENV !== 'prod') {
   server.events.on('response', function (request) {
     console.log(`[${new Date().toLocaleTimeString('en-US', { hour12: false })}] ${request.info.remoteAddress} : ${request.method.toUpperCase()} ${request.path} --> ${request.response.statusCode}  `)
