@@ -1,6 +1,5 @@
 const { logger } = require('../logger')
-const { User } = require('../sequelize')
-// const server = require('../server')
+const { User } = require('../models')
 
 // function log (request, reply) {
 //   console.log('hey')

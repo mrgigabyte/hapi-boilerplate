@@ -11,3 +11,17 @@ module.exports = (sequelize, type) => {
     }
   })
 }
+
+// ,
+//     email: {
+//       type: type.STRING,
+//       allowNull: false
+//     },
+//     password: {
+//       type: type.STRING,
+//       allowNull: false
+//     },
+//     roles: {
+//       type: type.STRING,
+//       allowNull: false
+//     }

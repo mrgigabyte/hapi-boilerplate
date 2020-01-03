@@ -1,7 +1,5 @@
 const { logger } = require('./logger')
 const Sequelize = require('sequelize')
-const UserModel = require('./models/users')
-
 const config = require('./config/config')
 const db = config.database
 
@@ -16,10 +14,13 @@ const sequelize = new Sequelize(db.name, db.username, db.password, {
   }
 })
 
-const User = UserModel(sequelize, Sequelize)
-
-sequelize.sync().then(() => { logger.info('Database & tables created!') })
+function init () {
+  sequelize.sync({ force: true }).then(() => { logger.info('Database & tables created!') }).catch((err) => { logger.error(err) })
+}
 
 module.exports = {
-  User
+  sequelize,
+  Sequelize,
+  init
 }
+
