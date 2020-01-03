@@ -49,7 +49,7 @@ export default function (server) {
       },
       description: 'Get todo',
       notes: 'Returns a todo item by the id passed in the path',
-      tags: ['api'] // ADD THIS TAG
+      tags: ['api']
     }
   }
   ])

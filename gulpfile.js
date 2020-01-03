@@ -35,8 +35,8 @@ gulp.task('compile', () => {
 // Copy config files
 
 gulp.task('configs', () => {
-  return gulp.src('src/config/*.json')
-    .pipe(gulp.dest('./build/src/config'))
+  return gulp.src('src/**/*.json')
+    .pipe(gulp.dest('./build/src/'))
 })
 
 // Lint all custom Javascript files.

@@ -1,12 +1,12 @@
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 import { loggers } from 'winston'
-const routes = require('./routes')
+
 const Hapi = require('@hapi/hapi')
 const config = require('./config/config')
 const Inert = require('@hapi/inert')
 const Vision = require('@hapi/vision')
-const database = require('./sequelize')
+
 // const Pack = require('../../package.json')
 
 // console.log(config, config.host, config.port)
@@ -29,6 +29,7 @@ const launch = async () => {
     })
 
     await server.register(pluginsToRegister)
+    await server.register([require('./modules/api'), require('./modules/models'), require('./modules/services')])
     await server.start()
   } catch (err) {
     console.log(err)
@@ -50,6 +51,3 @@ if (process.env.NODE_ENV !== 'prod') {
 }
 
 // Initialising Routes and Database
-
-routes.init(server)
-database.init()
