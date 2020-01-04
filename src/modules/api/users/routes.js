@@ -9,10 +9,22 @@ module.exports = (server) => {
       method: 'POST',
       path: '/users',
       options: {
-        validate: inputValidations.RegisterPayload,
+        validate: inputValidations.registerPayload,
         handler: handlers.createUser,
         // response: outputValidations.AuthOnRegisterOutputValidationConfig,
         description: 'Register a user',
+        tags: ['api', 'users']
+      }
+    },
+    // Login
+    {
+      method: 'POST',
+      path: '/users/login',
+      options: {
+        validate: inputValidations.loginPayload,
+        handler: handlers.loginUser,
+        // response: outputValidations.AuthOnRegisterOutputValidationConfig,
+        description: 'Login a user',
         tags: ['api', 'users']
       }
     }

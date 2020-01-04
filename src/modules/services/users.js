@@ -1,7 +1,7 @@
 module.exports = (userModel) => {
   const User = userModel
 
-  function createUser (payload) {
+  async function createUser (payload) {
     // let user = new User()
     const user = {}
 
@@ -10,9 +10,12 @@ module.exports = (userModel) => {
     user.username = payload.user.username
     user.password = payload.user.password
 
-    console.log('@@@@@')
-    console.log(User, user)
-    console.log('@@@@@')
+    try {
+      const status = await User.create(user)
+      return status
+    } catch (err) {
+      throw err.errors
+    }
 
     // return User.create(user).then((user)=>{
     //     return user

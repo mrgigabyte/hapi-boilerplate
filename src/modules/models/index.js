@@ -17,9 +17,9 @@ const sequelize = new Sequelize(db.name, db.username, db.password, {
   }
 })
 
-function init () {
-  return sequelize.sync({ force: true }).then(() => { logger.info('Database & tables created!') }).catch((err) => { logger.error(err) })
-}
+// function init () {
+//    sequelize.sync({ force: true }).then(() => { logger.info('Database & tables created!') }).catch((err) => { logger.error(err) })
+// }
 
 function modelInstance () {
   return {
@@ -30,7 +30,7 @@ function modelInstance () {
 module.exports = {
   pkg: require('./package.json'),
   register: async function (server, options) {
-    await init()
+    sequelize.sync({ force: true }).then(() => { logger.info('Database & tables created!') }).catch((err) => { logger.error(err) })
     server.method('models', modelInstance, {})
   }
 }

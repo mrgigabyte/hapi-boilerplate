@@ -1,13 +1,31 @@
 # Hapi-Boilerplate
 Made using hapi.js (obv) and postgres
 
+## Key features: 
+* Plugin style architecture, simply write plugins and scale the app.
+* uses async/await instead of traditional old-school callbacks
+* uses winston-logger, hence transporting logs for future reference and APM integration is available!
+* mainly uses 3 node environments: development, testing, production `dev, prod, test`
+* easy to run, hassel free.
+* easy 3rd party plugin integration, simply write the plugin using [standard hapi documentation](https://hapi.dev/tutorials/plugins/?lang=en_US) and put it in the plugin folder
+* based on latest hapi v17+
+* hapi-swagger integration, so you don't have to worry about writing a documentation for your REST-API, its automatically generated!
+
+## Technology
+* Hapi - Server side framework
+* Sequelize - versatile ORM can be used for (postgres, sqlite, Microsoft SQL, mysql )
+* Winston Logger - Logger mechanism 
+* Hapi-Swagger - documentation generating library
+* StandardJS - for linting the code based on the latest ES standards
+
+
 
 ## How to run?
 * *npm install*
 
-install npx globally or locally
+```install npx globally or locally
 install gulp-cli globally (not necessary but recommended)
-make sure npm and node are set to latest (recommended)
+make sure npm and node are set to latest (recommended)```
 
 npm install
 
@@ -27,7 +45,6 @@ Libraries which might be considered for future work:
 
 1. bcrypt
 2. boom 
-3. joi
 4. jsonwebtoken            
 5. node-schedule
 6. handlebars
@@ -40,5 +57,6 @@ Done:
 2. winston
 3. sequelize
 4. swagger
+5. joi
 
 winston transport logger: log files in the database/log-files or the console. 
