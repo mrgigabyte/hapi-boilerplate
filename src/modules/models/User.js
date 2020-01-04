@@ -1,5 +1,7 @@
+const bcrypt = require('bcrypt')
+
 module.exports = (sequelize, type) => {
-  return sequelize.define('user', {
+  const User = sequelize.define('user', {
     id: {
       type: type.INTEGER,
       primaryKey: true,
@@ -30,11 +32,23 @@ module.exports = (sequelize, type) => {
       notNull: false
     }
   }, {
+    hooks: {
+      beforeCreate: (user) => {
+        const salt = bcrypt.genSaltSync()
+        user.password = bcrypt.hashSync(user.password, salt)
+      }
+    },
     indexes: [
       {
         unique: true,
-        fields: ['username']
+        fields: ['username','email']
       }
     ]
   })
+
+  User.prototype.validPassword = function (password) {
+    return bcrypt.compareSync(password, this.password)
+  }
+
+  return User
 }

@@ -30,7 +30,7 @@ function modelInstance () {
 module.exports = {
   pkg: require('./package.json'),
   register: async function (server, options) {
-    sequelize.sync({ force: true }).then(() => { logger.info('Database & tables created!') }).catch((err) => { logger.error(err) })
+    sequelize.sync().then(() => { logger.info('Database & tables created!') }).catch((err) => { logger.error(err) })
     server.method('models', modelInstance, {})
   }
 }

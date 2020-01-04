@@ -16,21 +16,25 @@ module.exports = (userModel) => {
     } catch (err) {
       throw err.errors
     }
+  }
 
-    // return User.create(user).then((user)=>{
-    //     return user
-    // }).catch((err)=>{
-    //     return err})
-
-    // user.save((err, user) => {
-    //   if (err) return callback(err, null)
-    //   return callback(null, user)
-    // })
+  async function getUserByEmail (email) {
+    try {
+      const user = await User.findOne({ where: { email: email } })
+      return user
+    } catch (err) {
+      console.log(err)
+      return err.errors
+    }
   }
 
   return [
     {
       name: 'services.users.create',
       method: createUser
+    },
+    {
+      name: 'services.users.getByEmail',
+      method: getUserByEmail
     }]
 }
