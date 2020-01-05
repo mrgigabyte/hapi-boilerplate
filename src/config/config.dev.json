@@ -1,4 +1,14 @@
 {
+    "auth": {
+        "secret": "test123",
+        "tokenType": "Token",
+        "algorithm": "HS256",
+        "verifyOptions": {
+            "algorithms": [
+                "HS256"
+            ]
+        }
+    },
     "server": {
         "host": "localhost",
         "port": 8080,

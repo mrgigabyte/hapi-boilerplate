@@ -25,6 +25,7 @@
     "bcrypt": "^3.0.7",
     "core-js": "^3.6.0",
     "fs": "0.0.1-security",
+    "hapi-auth-jwt2": "^8.8.1",
     "hapi-swagger": "^11.1.0",
     "pg": "^7.17.0",
     "pg-hstore": "^2.3.3",
