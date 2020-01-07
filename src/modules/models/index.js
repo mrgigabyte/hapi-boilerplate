@@ -17,10 +17,6 @@ const sequelize = new Sequelize(db.name, db.username, db.password, {
   }
 })
 
-// function init () {
-//    sequelize.sync({ force: true }).then(() => { logger.info('Database & tables created!') }).catch((err) => { logger.error(err) })
-// }
-
 function modelInstance () {
   return {
     user: UserModel(sequelize, Sequelize)

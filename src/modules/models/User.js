@@ -1,4 +1,6 @@
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+const config = require('../../config/config')
 
 module.exports = (sequelize, type) => {
   const User = sequelize.define('user', {
@@ -46,8 +48,29 @@ module.exports = (sequelize, type) => {
     ]
   })
 
+  User.prototype.generateJWT = function () {
+    var today = new Date()
+    var exp = new Date(today)
+    exp.setDate(today.getDate() + 60)
+
+    return jwt.sign({
+      email: this.email,
+      password: this.password,
+      exp: parseInt(exp.getTime() / 1000)
+    }, config.auth.secret, { algorithm: config.auth.algorithm })
+  }
+
   User.prototype.validPassword = function (password) {
+    console.log(password, this.password)
     return bcrypt.compareSync(password, this.password)
+  }
+
+  User.prototype.toAuthJSON = function () {
+    return {
+      username: this.username,
+      email: this.email,
+      token: this.generateJWT()
+    }
   }
 
   return User

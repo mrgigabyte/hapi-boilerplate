@@ -1,4 +1,9 @@
 module.exports = (server) => {
+  function constructAuthUserResponse (user) {
+    const authUser = { user: user.toAuthJSON() }
+    return authUser
+  }
+
   return {
     /**
      * POST /users/login
@@ -26,7 +31,7 @@ module.exports = (server) => {
           }).code(401)
         }
 
-        return h.response('Logged In').code(200)
+        return h.response(constructAuthUserResponse(user)).code(200)
       } catch (err) {
         console.log(err)
         return h.response(err).code(422)
@@ -42,9 +47,17 @@ module.exports = (server) => {
 
       try {
         const user = await server.methods.services.users.create(payload)
-        return h.response(user).code(201)
+        return h.response(constructAuthUserResponse(user)).code(201)
       } catch (err) {
         return h.response(err).code(400)
+      }
+    },
+    async getCurrentUser (request, h) {
+      try {
+        return h.response(request.auth.credentials.user)
+      } catch (err) {
+        console.log(err)
+        return h.response(err).code(422)
       }
     }
   }

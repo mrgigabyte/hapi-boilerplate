@@ -1,7 +1,6 @@
 {
     "auth": {
         "secret": "test123",
-        "tokenType": "Token",
         "algorithm": "HS256",
         "verifyOptions": {
             "algorithms": [

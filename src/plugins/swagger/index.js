@@ -5,7 +5,17 @@ const swaggerOptions = {
   info: {
     title: Pack.name,
     version: Pack.version
-  }
+  },
+
+  securityDefinitions: {
+    jwt: {
+      type: 'apiKey',
+      name: 'Authorization',
+      in: 'header'
+    }
+  },
+  // },
+  security: [{ jwt: [] }]
 }
 
 export default () => {

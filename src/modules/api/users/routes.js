@@ -1,5 +1,6 @@
 const inputValidations = require('./validations/input')
 // const outputValidations = require('./validations/output')
+// const Joi = require('@hapi/joi')
 
 module.exports = (server) => {
   const handlers = require('./handlers')(server)
@@ -25,6 +26,19 @@ module.exports = (server) => {
         handler: handlers.loginUser,
         // response: outputValidations.AuthOnRegisterOutputValidationConfig,
         description: 'Login a user',
+        tags: ['api', 'users']
+      }
+    },
+    // Current User
+    {
+      method: 'GET',
+      path: '/users',
+      options: {
+        auth: 'jwt',
+        validate: inputValidations.GetCurrentPayload,
+        handler: handlers.getCurrentUser,
+        // response: outputValidations.AuthOnRegisterOutputValidationConfig,
+        description: 'Get current user info',
         tags: ['api', 'users']
       }
     }

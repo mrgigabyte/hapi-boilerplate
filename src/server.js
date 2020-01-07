@@ -17,7 +17,7 @@ const server = new Hapi.Server({
 })
 
 const plugins = config.server.plugins
-const pluginsToRegister = [Inert, Vision]
+const pluginsToRegister = [Inert, Vision, { plugin: require('hapi-auth-jwt2') }]
 
 const launch = async () => {
   try {
@@ -29,7 +29,7 @@ const launch = async () => {
     })
 
     await server.register(pluginsToRegister)
-    await server.register([require('./modules/api'), require('./modules/models'), require('./modules/services')])
+    await server.register([require('./modules/models'), require('./modules/auth'), require('./modules/api'), require('./modules/services')])
     await server.start()
   } catch (err) {
     console.log(err)
