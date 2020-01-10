@@ -52,9 +52,36 @@ module.exports = (server) => {
         return h.response(err).code(400)
       }
     },
+    /**
+     * GET /users
+     * @param {*} request
+     * @param {*} h
+     */
     async getCurrentUser (request, h) {
       try {
         return h.response(request.auth.credentials.user)
+      } catch (err) {
+        console.log(err)
+        return h.response(err).code(422)
+      }
+    },
+    /**
+     * GET /users
+     * @param {*} request
+     * @param {*} h
+     */
+    async updateUser (request, h) {
+      try {
+        const payload = request.payload
+        const authStatus = request.auth.credentials
+        if (authStatus) {
+          const status = await server.methods.services.users.updateUser(authStatus.user, payload)
+          if (status) {
+            return h.response('Updated successfully!').code(201)
+          } else {
+            return h.response(status).code(400)
+          }
+        }
       } catch (err) {
         console.log(err)
         return h.response(err).code(422)

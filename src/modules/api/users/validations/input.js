@@ -1,5 +1,9 @@
 const Joi = require('@hapi/joi')
 
+const HeadersPayLoad = Joi.object().keys({
+  Authorization: Joi.string().required().description('A valid Json Web Token')
+}).unknown().rename('authorization', 'Authorization')
+
 // --------------------------------------------------
 //    Config - Input Validations
 // --------------------------------------------------
@@ -24,16 +28,24 @@ const registerPayload = {
   })
 }
 
+const updatePayload = {
+  headers: HeadersPayLoad,
+  payload: Joi.object().keys({
+    user: Joi.object().keys({
+      name: Joi.string(),
+      username: Joi.string(),
+      email: Joi.string().email(),
+      password: Joi.string()
+    })
+  })
+}
+
 const errorHandler = (request, h, error) => {
   console.log(error)
   return h.response('sdcd')
 }
 
-const HeadersPayLoad = Joi.object().keys({
-  Authorization: Joi.string().required().description('A valid Json Web Token')
-}).unknown().rename('authorization', 'Authorization')
-
-const GetCurrentPayload = {
+const getCurrentPayload = {
   headers: HeadersPayLoad,
   failAction: errorHandler
 }
@@ -41,5 +53,6 @@ const GetCurrentPayload = {
 module.exports = {
   loginPayload,
   registerPayload,
-  GetCurrentPayload
+  getCurrentPayload,
+  updatePayload
 }

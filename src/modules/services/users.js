@@ -2,7 +2,6 @@ module.exports = (userModel) => {
   const User = userModel
 
   async function createUser (payload) {
-    // let user = new User()
     const user = {}
 
     user.email = payload.user.email
@@ -24,7 +23,33 @@ module.exports = (userModel) => {
       return user
     } catch (err) {
       console.log(err)
-      return err.errors
+      throw err.errors
+    }
+  }
+
+  async function updateUser (authUser, payload) {
+    const user = {}
+
+    if (payload.user.email) {
+      user.email = payload.user.email
+    }
+    if (payload.user.name) {
+      user.name = payload.user.name
+    }
+    if (payload.user.username) {
+      user.username = payload.user.username
+    }
+    if (payload.user.password) {
+      user.username = payload.user.password
+    }
+
+    try {
+      console.log(authUser)
+      const status = await User.update(user, { where: { email: authUser.email } })
+      return status
+    } catch (err) {
+      console.log(err)
+      throw err.errors
     }
   }
 
@@ -36,5 +61,9 @@ module.exports = (userModel) => {
     {
       name: 'services.users.getByEmail',
       method: getUserByEmail
+    },
+    {
+      name: 'services.users.updateUser',
+      method: updateUser
     }]
 }

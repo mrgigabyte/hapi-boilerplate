@@ -43,13 +43,10 @@ Minimal structural and lexical changes:
 
 Libraries which might be considered for future work:
 
-1. bcrypt
-2. boom 
-4. jsonwebtoken            
-5. node-schedule
-6. handlebars
-8. chai/mocha
-9. stream to promise
+1. boom             
+2. node-schedule
+3. handlebars
+4. chai/mocha
 
 Done:
 
@@ -58,5 +55,7 @@ Done:
 3. sequelize
 4. swagger
 5. joi
+6. brypt
+7. jsonwebtoken
 
 winston transport logger: log files in the database/log-files or the console. 
