@@ -6,7 +6,7 @@ module.exports = (server) => {
 
   return {
     /**
-     * POST /users/login
+     * POST /user/login
      * @param {*} request
      * @param {*} h
      */
@@ -38,7 +38,7 @@ module.exports = (server) => {
       }
     },
     /**
-     * POST /users
+     * POST /user
      * @param {*} request
      * @param {*} h
      */
@@ -53,7 +53,7 @@ module.exports = (server) => {
       }
     },
     /**
-     * GET /users
+     * GET /user
      * @param {*} request
      * @param {*} h
      */
@@ -66,7 +66,7 @@ module.exports = (server) => {
       }
     },
     /**
-     * GET /users
+     * PUT /user
      * @param {*} request
      * @param {*} h
      */
@@ -77,7 +77,7 @@ module.exports = (server) => {
         if (authStatus) {
           const status = await server.methods.services.users.updateUser(authStatus.user, payload)
           if (status) {
-            return h.response('Updated successfully!').code(201)
+            return h.response({ message: 'Updated successfully!' }).code(201)
           } else {
             return h.response(status).code(400)
           }

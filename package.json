@@ -1,7 +1,7 @@
 {
   "name": "hapi-boilerplate",
   "version": "1.0.0",
-  "description": "",
+  "description": "Backend Boilerplate based on hapi.js framework",
   "main": "index.js",
   "scripts": {
     "fix": "npx standard --fix",
@@ -24,7 +24,6 @@
     "@hapi/vision": "^5.5.4",
     "bcrypt": "^3.0.7",
     "core-js": "^3.6.0",
-    "fs": "0.0.1-security",
     "hapi-auth-jwt2": "^8.8.1",
     "hapi-swagger": "^11.1.0",
     "jsonwebtoken": "^8.5.1",

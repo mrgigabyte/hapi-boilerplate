@@ -28,7 +28,7 @@ module.exports = (server) => {
         tags: ['api', 'users']
       }
     },
-    // Current User
+    // Get Current User
     {
       method: 'GET',
       path: '/user',
@@ -41,7 +41,7 @@ module.exports = (server) => {
         tags: ['api', 'users']
       }
     },
-    // Current User
+    // Update Current User
     {
       method: 'PUT',
       path: '/user',

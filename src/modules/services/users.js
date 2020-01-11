@@ -1,3 +1,5 @@
+const helpers = require('./helpers')
+
 module.exports = (userModel) => {
   const User = userModel
 
@@ -40,11 +42,10 @@ module.exports = (userModel) => {
       user.username = payload.user.username
     }
     if (payload.user.password) {
-      user.username = payload.user.password
+      user.password = helpers.hashPassword(payload.user.password)
     }
 
     try {
-      console.log(authUser)
       const status = await User.update(user, { where: { email: authUser.email } })
       return status
     } catch (err) {
