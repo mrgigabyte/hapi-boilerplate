@@ -43,10 +43,9 @@ Minimal structural and lexical changes:
 
 Libraries which might be considered for future work:
 
-1. boom             
-2. node-schedule
-3. handlebars
-4. chai/mocha
+1. node-schedule
+2. handlebars
+3. chai/mocha
 
 Done:
 
@@ -57,5 +56,6 @@ Done:
 5. joi
 6. brypt
 7. jsonwebtoken
+8. Boom 
 
 winston transport logger: log files in the database/log-files or the console. 
