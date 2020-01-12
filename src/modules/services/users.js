@@ -5,28 +5,16 @@ module.exports = (userModel) => {
 
   async function createUser (payload) {
     const user = {}
-
     user.email = payload.user.email
     user.name = payload.user.name
     user.username = payload.user.username
     user.password = payload.user.password
 
-    try {
-      const status = await User.create(user)
-      return status
-    } catch (err) {
-      throw err.errors
-    }
+    return User.create(user)
   }
 
   async function getUserByEmail (email) {
-    try {
-      const user = await User.findOne({ where: { email: email } })
-      return user
-    } catch (err) {
-      console.log(err)
-      throw err.errors
-    }
+    return User.findOne({ where: { email: email } })
   }
 
   async function updateUser (authUser, payload) {
@@ -45,13 +33,7 @@ module.exports = (userModel) => {
       user.password = helpers.hashPassword(payload.user.password)
     }
 
-    try {
-      const status = await User.update(user, { where: { email: authUser.email } })
-      return status
-    } catch (err) {
-      console.log(err)
-      throw err.errors
-    }
+    return User.update(user, { where: { email: authUser.email } })
   }
 
   return [

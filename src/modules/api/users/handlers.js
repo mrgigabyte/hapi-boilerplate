@@ -1,3 +1,6 @@
+const replyHelper = require('../helpers')
+const Boom = require('@hapi/boom')
+
 module.exports = (server) => {
   function constructAuthUserResponse (user) {
     const authUser = { user: user.toAuthJSON() }
@@ -16,24 +19,15 @@ module.exports = (server) => {
         const user = await server.methods.services.users.getByEmail(payload.user.email)
 
         if (!user) {
-          return h.response({
-            errors: {
-              404: ['no account associated with given email id']
-            }
-          }).code(404)
+          return Boom.notFound('no account associated with given email id')
         }
 
         if (!user.validPassword(payload.user.password)) {
-          return h.response({
-            errors: {
-              'email or password': ['email or password missmatch !']
-            }
-          }).code(401)
+          return Boom.unauthorized('email or password missmatch !')
         }
 
         return h.response(constructAuthUserResponse(user)).code(200)
       } catch (err) {
-        console.log(err)
         return h.response(err).code(422)
       }
     },
@@ -49,7 +43,7 @@ module.exports = (server) => {
         const user = await server.methods.services.users.create(payload)
         return h.response(constructAuthUserResponse(user)).code(201)
       } catch (err) {
-        return h.response(err).code(400)
+        return h.response(replyHelper.constructErrorResponse(err)).code(422)
       }
     },
     /**
@@ -61,7 +55,6 @@ module.exports = (server) => {
       try {
         return h.response(request.auth.credentials.user)
       } catch (err) {
-        console.log(err)
         return h.response(err).code(422)
       }
     },
@@ -77,14 +70,13 @@ module.exports = (server) => {
         if (authStatus) {
           const status = await server.methods.services.users.updateUser(authStatus.user, payload)
           if (status) {
-            return h.response({ message: 'Updated successfully!' }).code(201)
+            return h.response({ message: 'Success!' }).code(201)
           } else {
-            return h.response(status).code(400)
+            return Boom.badRequest('Unable perform updation')
           }
         }
       } catch (err) {
-        console.log(err)
-        return h.response(err).code(422)
+        return h.response(constructAuthUserResponse(err)).code(422)
       }
     }
   }

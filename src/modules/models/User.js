@@ -15,13 +15,14 @@ module.exports = (sequelize, type) => {
     },
     username: {
       type: type.STRING,
-      uniqueKey: true,
+      unique: true,
       notNull: true
 
     },
     email: {
       type: type.STRING,
       isEmail: true,
+      unique: true,
       notNull: true
 
     },
@@ -39,13 +40,7 @@ module.exports = (sequelize, type) => {
         const salt = bcrypt.genSaltSync()
         user.password = bcrypt.hashSync(user.password, salt)
       }
-    },
-    indexes: [
-      {
-        unique: true,
-        fields: ['username', 'email']
-      }
-    ]
+    }
   })
 
   User.prototype.generateJWT = function () {

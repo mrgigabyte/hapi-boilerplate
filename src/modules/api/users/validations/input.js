@@ -1,8 +1,8 @@
 const Joi = require('@hapi/joi')
-
-const HeadersPayLoad = Joi.object().keys({
-  Authorization: Joi.string().required().description('A valid Json Web Token')
-}).unknown().rename('authorization', 'Authorization')
+const { validateOptions, HeadersPayLoad } = require('../../validations')
+// const HeadersPayLoad = Joi.object().keys({
+//   Authorization: Joi.string().required().description('A valid Json Web Token')
+// }).unknown().rename('authorization', 'Authorization')
 
 // --------------------------------------------------
 //    Config - Input Validations
@@ -14,18 +14,22 @@ const loginPayload = {
       email: Joi.string().email().required(),
       password: Joi.string().required()
     })
-  })
+  }),
+  options: validateOptions.options,
+  failAction: validateOptions.failAction
 }
 
 const registerPayload = {
   payload: Joi.object().keys({
     user: Joi.object().keys({
-      name: Joi.string().required(),
+      name: Joi.required(),
       username: Joi.string().required(),
       email: Joi.string().email().required(),
       password: Joi.string().required()
     })
-  })
+  }),
+  options: validateOptions.options,
+  failAction: validateOptions.failAction
 }
 
 const updatePayload = {
@@ -37,17 +41,15 @@ const updatePayload = {
       email: Joi.string().email(),
       password: Joi.string()
     })
-  })
-}
-
-const errorHandler = (request, h, error) => {
-  console.log(error)
-  return h.response('sdcd')
+  }),
+  options: validateOptions.options,
+  failAction: validateOptions.failAction
 }
 
 const getCurrentPayload = {
   headers: HeadersPayLoad,
-  failAction: errorHandler
+  options: validateOptions.options,
+  failAction: validateOptions.failAction
 }
 
 module.exports = {
