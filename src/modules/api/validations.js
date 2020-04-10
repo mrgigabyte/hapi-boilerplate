@@ -1,9 +1,10 @@
 const Joi = require('@hapi/joi')
-// const Boom = require('@hapi/boom')
 const constructErrorResponse = require('./helpers').constructErrorResponse
 
 const errorHandler = (request, h, error) => {
-  return h.response(constructErrorResponse(error)).code(422).takeover()
+  const response = constructErrorResponse(error).errors
+  const statusCode = constructErrorResponse(error).statusCode
+  return h.response({ response }).code(statusCode).takeover()
 }
 
 const validateOptions = {

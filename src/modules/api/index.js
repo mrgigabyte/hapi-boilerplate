@@ -6,10 +6,9 @@ module.exports = {
     const preResponse = (request, h) => {
       const response = request.response
       let reformated = {}
-      console.log(response)
-      // console.log(Object.keys(response.source.context))
+      
       if (response.isBoom) {
-        reformated.statusCode = response.output.statusCode
+        reformated.statusCode = response.output.payload.statusCode
         reformated.type = response.output.payload.error
         reformated.errors = [{ message: response.output.payload.message }]
         return h.response(reformated).code(reformated.statusCode)
@@ -22,13 +21,7 @@ module.exports = {
         return h.response(reformated).code(reformated.statusCode)
       }
 
-      //
-      // if(Object.keys(response.source.context)[0]==='hapiSwagger')
-      // {
-      //  return h.continue
-      // }
       return h.continue
-      // return h.response(reformated).code(reformated.statusCode)
     }
 
     await server.register(require('./users'))

@@ -3,7 +3,7 @@ import 'regenerator-runtime/runtime'
 import { loggers } from 'winston'
 
 const Hapi = require('@hapi/hapi')
-const config = require('./config/config')
+const config = require('./config')
 const Inert = require('@hapi/inert')
 const Vision = require('@hapi/vision')
 

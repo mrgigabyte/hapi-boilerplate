@@ -1,8 +1,7 @@
-const config = require('../../config/config')
+const config = require('../../config')
 
 const register = async (server, options) => {
   const User = server.methods.models().user
-  console.log(User)
   const validate = async function (decoded, request, h) {
     try {
       const user = await User.findOne({ where: { email: decoded.email } })

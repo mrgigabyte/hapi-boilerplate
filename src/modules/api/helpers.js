@@ -3,8 +3,8 @@
 // --------------------------------------------------
 
 const responseType = {
-  200: 'success',
-  201: 'created',
+  200: 'Success',
+  201: 'Created',
   400: 'Bad Request',
   304: 'Not Modified',
   401: 'Unauthorized',
@@ -16,11 +16,14 @@ const responseType = {
 }
 
 function joiResponseErrorHandler (err) {
-  console.log(err.isBoom)
   if (err.isJoi) {
+    console.log('#### IS JOI #######')
     const response = {
-      errors: []
+      errors: [],
+      statusCode: err.output.statusCode
     }
+
+    console.log(err)
 
     err.details.forEach((error) => {
       response.errors.push(
@@ -52,7 +55,6 @@ function defaultResponseErrorHandler (err) {
 }
 
 function sequelizeResponseValidationErrorHandler (err) {
-  console.log('postgres error')
   if (err.sql) {
     const response = {
       errors: []
@@ -79,10 +81,8 @@ const constructErrorResponse = (err) => {
   let response
   for (const handler in errorHandlers) {
     const handlerFn = errorHandlers[handler]
-    if (typeof (handlerFn) === 'function') {
-      response = handlerFn(err)
-      if (response !== null) break
-    }
+    response = handlerFn(err)
+    if (response !== null) break
   }
   return response
 }

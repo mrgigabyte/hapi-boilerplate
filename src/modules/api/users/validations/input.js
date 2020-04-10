@@ -1,8 +1,5 @@
 const Joi = require('@hapi/joi')
 const { validateOptions, HeadersPayLoad } = require('../../validations')
-// const HeadersPayLoad = Joi.object().keys({
-//   Authorization: Joi.string().required().description('A valid Json Web Token')
-// }).unknown().rename('authorization', 'Authorization')
 
 // --------------------------------------------------
 //    Config - Input Validations

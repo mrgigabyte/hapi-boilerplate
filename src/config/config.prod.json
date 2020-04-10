@@ -1,8 +1,13 @@
 {
-    "auth":{
-        "secret":"test123"
+    "auth": {
+        "secret": "test123",
+        "algorithm": "HS256",
+        "verifyOptions": {
+            "algorithms": [
+                "HS256"
+            ]
+        }
     },
-
     "server": {
         "host": "localhost",
         "port": 8080,
@@ -23,5 +28,20 @@
             "idle": 1000
         },
         "dialect": "postgres"
+    },
+    "plugins": {
+        "hapi-swagger": {
+            "info": {
+                "title": "hapi-boilerplate",
+                "version": "1.0.0"
+            },
+            "securityDefinitions": {
+                "jwt": {
+                    "type": "apiKey",
+                    "name": "Authorization",
+                    "in": "header"
+                }
+            }
+        }
     }
 }

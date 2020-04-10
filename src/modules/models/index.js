@@ -1,6 +1,6 @@
 const { logger } = require('../../logger')
 const Sequelize = require('sequelize')
-const config = require('../../config/config')
+const config = require('../../config')
 const db = config.database
 
 // Import models here
