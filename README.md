@@ -65,11 +65,11 @@ winston transport logger: log files in the database/log-files or the console.
 
 
 
-##Possible observations after long hiatus:
+## Possible observations after long hiatus:
 1. Jwt expiry set to +60 days. User Model
 2. test condition: invalid password, valid email. Response. (auth/index.js)
 3. fixing the import statements for config in server.js and config/index.js
 
-##Things to work on:
+## Things to work on:
 1. output validations.
 2. status code for input validations.
