@@ -6,7 +6,7 @@ module.exports = {
     const preResponse = (request, h) => {
       const response = request.response
       let reformated = {}
-      
+
       if (response.isBoom) {
         reformated.statusCode = response.output.payload.statusCode
         reformated.type = response.output.payload.error
