@@ -1,6 +1,6 @@
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
-import { loggers } from 'winston'
+import { logger } from 'winston'
 
 const Hapi = require('@hapi/hapi')
 const config = require('./config')
@@ -33,7 +33,7 @@ const launch = async () => {
     await server.start()
   } catch (err) {
     console.log(err)
-    loggers.error(err)
+    logger.error(err)
     process.exit(1)
   }
 

@@ -1,5 +1,5 @@
 const inputValidations = require('./validations/input')
-// const outputValidations = require('./validations/output')
+const outputValidations = require('./validations/output')
 
 module.exports = (server) => {
   const handlers = require('./handlers')(server)
@@ -11,7 +11,7 @@ module.exports = (server) => {
       options: {
         validate: inputValidations.registerPayload,
         handler: handlers.createUser,
-        // response: outputValidations.AuthOnRegisterOutputValidationConfig,
+        response: outputValidations.registerPayload,
         description: 'Register a user',
         tags: ['api', 'users']
       }

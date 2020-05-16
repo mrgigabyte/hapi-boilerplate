@@ -5,20 +5,25 @@ module.exports = {
   register: async function (server, options) {
     const preResponse = (request, h) => {
       const response = request.response
-      let reformated = {}
+      const reformated = {
+        error: {}
+      }
+
+      console.log(response.statusCode)
 
       if (response.isBoom) {
-        reformated.statusCode = response.output.payload.statusCode
-        reformated.type = response.output.payload.error
-        reformated.errors = [{ message: response.output.payload.message }]
-        return h.response(reformated).code(reformated.statusCode)
+        reformated.error.code = response.output.payload.statusCode
+        reformated.error.type = response.output.payload.error
+        reformated.details = [{ message: response.output.payload.message }]
+        return h.response(reformated).code(reformated.error.code)
       }
 
       if (!response.isBoom & ![200, 201].includes(response.statusCode)) {
-        reformated.statusCode = response.statusCode
-        reformated.type = responseType[response.statusCode]
-        reformated = { ...reformated, ...response.source }
-        return h.response(reformated).code(reformated.statusCode)
+        console.log('&&&&&&&&&&&&&&&&&&&&&&&&&&&&&', response)
+        reformated.error.code = response.statusCode
+        reformated.error.type = responseType[response.statusCode]
+        reformated.error.details = response.source.errors
+        return h.response(reformated).code(reformated.error.code)
       }
 
       return h.continue

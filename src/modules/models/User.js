@@ -1,7 +1,6 @@
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const config = require('../../config'
-)
+const config = require('../../config')
 
 module.exports = (sequelize, type) => {
   const User = sequelize.define('user', {
@@ -57,7 +56,6 @@ module.exports = (sequelize, type) => {
   }
 
   User.prototype.validPassword = function (password) {
-    console.log(password, this.password)
     return bcrypt.compareSync(password, this.password)
   }
 

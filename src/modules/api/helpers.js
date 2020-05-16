@@ -16,14 +16,13 @@ const responseType = {
 }
 
 function joiResponseErrorHandler (err) {
+  console.log('**********************************joi*****************************')
   if (err.isJoi) {
-    console.log('#### IS JOI #######')
+    console.log('%%%%%%%%%%%%%%%%', err)
     const response = {
       errors: [],
       statusCode: err.output.statusCode
     }
-
-    console.log(err)
 
     err.details.forEach((error) => {
       response.errors.push(
@@ -40,6 +39,8 @@ function joiResponseErrorHandler (err) {
 }
 
 function defaultResponseErrorHandler (err) {
+  console.log('**********************************default*****************************')
+  console.log('###################', err)
   const response = {
     errors: []
   }
@@ -55,6 +56,7 @@ function defaultResponseErrorHandler (err) {
 }
 
 function sequelizeResponseValidationErrorHandler (err) {
+  console.log('**********************************sql*****************************')
   if (err.sql) {
     const response = {
       errors: []
@@ -63,11 +65,12 @@ function sequelizeResponseValidationErrorHandler (err) {
     err.errors.forEach((error) => {
       response.errors.push(
         {
-          type: error.type,
           message: error.message
         }
       )
     })
+
+    console.log(response)
 
     return response
   }
@@ -79,10 +82,16 @@ const errorHandlers = [joiResponseErrorHandler, sequelizeResponseValidationError
 
 const constructErrorResponse = (err) => {
   let response
+  console.log('****************', err)
   for (const handler in errorHandlers) {
+    console.log(handler)
     const handlerFn = errorHandlers[handler]
     response = handlerFn(err)
-    if (response !== null) break
+    if (response !== null) {
+      console.log(response)
+      console.log('!@#$%^&*(*&^%$$%^&*(')
+      break
+    }
   }
   return response
 }

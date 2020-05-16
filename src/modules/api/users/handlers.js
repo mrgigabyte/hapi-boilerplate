@@ -23,12 +23,12 @@ module.exports = (server) => {
         }
 
         if (!user.validPassword(payload.user.password)) {
-          return Boom.unauthorized('email or password missmatch !')
+          return Boom.unauthorized('email or password missmatch!')
         }
 
         return h.response(constructAuthUserResponse(user)).code(200)
       } catch (err) {
-        return h.response(err).code(422)
+        return h.response(err).code(500)
       }
     },
     /**
