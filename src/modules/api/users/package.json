@@ -1,9 +1,4 @@
 {
     "name": "api.users",
-    "version": "1.0.0",
-    "options": {
-        "response": {
-            "sample":100
-        }
-    }
+    "version": "1.0.0"
 }

@@ -19,7 +19,7 @@ const loginPayload = {
 const registerPayload = {
   payload: Joi.object().keys({
     user: Joi.object().keys({
-      name: Joi.required(),
+      name: Joi.string().required(),
       username: Joi.string().required(),
       email: Joi.string().email().required(),
       password: Joi.string().required()

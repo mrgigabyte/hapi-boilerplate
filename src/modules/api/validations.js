@@ -1,33 +1,20 @@
 const { logger } = require('../../logger')
-const Joi = require('@hapi/joi')
 const constructErrorResponse = require('./helpers').constructErrorResponse
-// const responseType = require('./helpers').responseType
+const options = require('./package.json').options.response
+const Joi = require('@hapi/joi')
+const responseType = require('./helpers').responseType
+const errorSchema = require('./helpers').errorResponseSchema
+
+// --------------------------------------------------
+//    Error Handlers
+// --------------------------------------------------
 
 const ValidateErrorHandler = (request, h, error) => {
-  console.log('^^^^^^^^VALIDATE ERROR HANDLER^^^^^^^^^^^')
-  const response = constructErrorResponse(error)
-  console.log(response)
-  const errors = response.errors
-  const statusCode = response.statusCode
-  return h.response({ errors }).code(statusCode).takeover()
+  const response = constructErrorResponse(error, error.output.statusCode)
+  return h.response(response).code(response.error.code).takeover()
 }
 
 const ResponseErrorHandler = (request, h, error) => {
-  console.log('^^^^^^^^^^RESPONSE ERROR HANDLER^^^^^^^^^^')
-  // console.log(error)
-  // console.log('del',error.details)
-  // console.log('##req##', request)
-  // console.log('%%h%%', h)
-  // console.log('$$error$$',error)
-
-  // error.details[0].path.forEach(function (key) {
-  //   console.log(key)
-  //   responsex[key]=''
-  //   response1[key] = response1[key]
-  // })
-
-  // console.log(response1)
-
   const message = {
     request: {
       info: request.info,
@@ -43,31 +30,16 @@ const ResponseErrorHandler = (request, h, error) => {
       }
     }
   }
+
   logger.error(message, { occurence: 'ResponseErrorHandler' })
-  const response = {
-    errors: [
-      {
-        message: 'Something unexpected happened!'
-      }
-    ],
-    statusCode: 500
 
-  }
+  const response = errorSchema(500)
+  response.error.details.push({
+    message: 'Something went wrong! :('
+  })
 
-  const errors = response.errors
-  const statusCode = response.statusCode
-
-  return h.response({ errors }).code(statusCode).takeover()
+  return h.response({ response }).code(response.error.code).takeover()
 }
-
-// function schemaForStatusCode(statusCode){
-//   return {
-//     error: {
-//       code: statusCode,
-
-//     }
-//   }
-// }
 
 const validateOptions = {
   options: { abortEarly: true },
@@ -83,13 +55,81 @@ const responseOptions = {
 //    Schemas
 // --------------------------------------------------
 
+function schemaForStatusCode (statusCode) {
+  return Joi.object().keys({
+    error: Joi.object().keys({
+
+      code: Joi.number().valid(statusCode).required(),
+      type: Joi.string().valid(responseType[statusCode]).required(),
+      details: Joi.array().items(Joi.object({
+        message: Joi.string().required()
+      }))
+
+    })
+  })
+}
+
 const HeadersPayLoad = Joi.object().keys({
   Authorization: Joi.string().required().description('A valid Json Web Token')
 }).unknown().rename('authorization', 'Authorization')
 
+const BadRequestStatus = {
+  status: {
+    400: schemaForStatusCode(400)
+  }
+}
+
+const UnauthorizedStatus = {
+  status: {
+    401: schemaForStatusCode(401)
+  }
+}
+
+const ForbiddenStatus = {
+  status: {
+    403: schemaForStatusCode(403)
+  }
+}
+
+const NotFoundStatus = {
+  status: {
+    404: schemaForStatusCode(404)
+  }
+}
+
+const ConflictStatus = {
+  status: {
+    409: schemaForStatusCode(409)
+  }
+}
+
+const UnprocessableEntityStatus = {
+  status: {
+    422: schemaForStatusCode(422)
+  }
+}
+
+const InternalServerErrorStatus = {
+  sample: options.sample,
+  status: {
+    500: schemaForStatusCode(500)
+  },
+  options: responseOptions.options,
+  failAction: responseOptions.failAction
+}
+
 module.exports = {
+
   validateOptions,
   responseOptions,
   ValidateErrorHandler,
-  HeadersPayLoad
+  HeadersPayLoad,
+  BadRequestStatus,
+  UnauthorizedStatus,
+  ForbiddenStatus,
+  NotFoundStatus,
+  ConflictStatus,
+  UnprocessableEntityStatus,
+  InternalServerErrorStatus
+
 }

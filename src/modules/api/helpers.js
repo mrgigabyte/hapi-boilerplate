@@ -6,26 +6,30 @@ const responseType = {
   200: 'Success',
   201: 'Created',
   400: 'Bad Request',
-  304: 'Not Modified',
   401: 'Unauthorized',
   403: 'Forbidden',
   404: 'Not Found',
   409: 'Conflict',
   422: 'Unprocessable Entity (WebDAV)',
-  500: 'Internet Server Error'
+  500: 'Internal Server Error'
 }
 
-function joiResponseErrorHandler (err) {
-  console.log('**********************************joi*****************************')
-  if (err.isJoi) {
-    console.log('%%%%%%%%%%%%%%%%', err)
-    const response = {
-      errors: [],
-      statusCode: err.output.statusCode
+function errorResponseSchema (statusCode) {
+  return {
+    error: {
+      code: statusCode,
+      type: responseType[statusCode],
+      details: []
     }
+  }
+}
+
+function joiResponseErrorHandler (err, statusCode) {
+  if (err.isJoi) {
+    const response = errorResponseSchema(statusCode)
 
     err.details.forEach((error) => {
-      response.errors.push(
+      response.error.details.push(
         {
           message: error.message
         }
@@ -38,39 +42,29 @@ function joiResponseErrorHandler (err) {
   return null
 }
 
-function defaultResponseErrorHandler (err) {
-  console.log('**********************************default*****************************')
-  console.log('###################', err)
-  const response = {
-    errors: []
-  }
+function defaultResponseErrorHandler (err, statusCode) {
+  const response = errorResponseSchema(statusCode)
 
-  response.errors.push(
+  response.error.details.push(
     {
-      name: err.name,
-      message: err.message
+      message: err
     }
   )
 
   return response
 }
 
-function sequelizeResponseValidationErrorHandler (err) {
-  console.log('**********************************sql*****************************')
+function sequelizeResponseValidationErrorHandler (err, statusCode) {
   if (err.sql) {
-    const response = {
-      errors: []
-    }
+    const response = errorResponseSchema(statusCode)
 
     err.errors.forEach((error) => {
-      response.errors.push(
+      response.error.details.push(
         {
           message: error.message
         }
       )
     })
-
-    console.log(response)
 
     return response
   }
@@ -80,16 +74,12 @@ function sequelizeResponseValidationErrorHandler (err) {
 
 const errorHandlers = [joiResponseErrorHandler, sequelizeResponseValidationErrorHandler, defaultResponseErrorHandler]
 
-const constructErrorResponse = (err) => {
+const constructErrorResponse = (err, statusCode) => {
   let response
-  console.log('****************', err)
   for (const handler in errorHandlers) {
-    console.log(handler)
     const handlerFn = errorHandlers[handler]
-    response = handlerFn(err)
+    response = handlerFn(err, statusCode)
     if (response !== null) {
-      console.log(response)
-      console.log('!@#$%^&*(*&^%$$%^&*(')
       break
     }
   }
@@ -98,5 +88,6 @@ const constructErrorResponse = (err) => {
 
 module.exports = {
   constructErrorResponse,
-  responseType
+  responseType,
+  errorResponseSchema
 }

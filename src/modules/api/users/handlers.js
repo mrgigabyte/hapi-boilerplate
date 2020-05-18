@@ -43,7 +43,7 @@ module.exports = (server) => {
         const user = await server.methods.services.users.create(payload)
         return h.response(constructAuthUserResponse(user)).code(201)
       } catch (err) {
-        return h.response(replyHelper.constructErrorResponse(err)).code(422)
+        return h.response(replyHelper.constructErrorResponse(err, 409)).code(409)
       }
     },
     /**

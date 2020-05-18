@@ -11,7 +11,7 @@ module.exports = (server) => {
       options: {
         validate: inputValidations.registerPayload,
         handler: handlers.createUser,
-        response: outputValidations.registerPayload,
+        response: outputValidations.AuthOnRegisterOutputValidationConfig,
         description: 'Register a user',
         tags: ['api', 'users']
       }

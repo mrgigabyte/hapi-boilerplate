@@ -1,7 +1,9 @@
-const { responseType } = require('./helpers')
+// const { responseType } = require('./helpers')
+const pkg = require('./package.json')
 
 module.exports = {
-  pkg: require('./package.json'),
+  name: pkg.name,
+  version: pkg.version,
   register: async function (server, options) {
     const preResponse = (request, h) => {
       const response = request.response
@@ -9,20 +11,10 @@ module.exports = {
         error: {}
       }
 
-      console.log(response.statusCode)
-
       if (response.isBoom) {
         reformated.error.code = response.output.payload.statusCode
         reformated.error.type = response.output.payload.error
         reformated.details = [{ message: response.output.payload.message }]
-        return h.response(reformated).code(reformated.error.code)
-      }
-
-      if (!response.isBoom & ![200, 201].includes(response.statusCode)) {
-        console.log('&&&&&&&&&&&&&&&&&&&&&&&&&&&&&', response)
-        reformated.error.code = response.statusCode
-        reformated.error.type = responseType[response.statusCode]
-        reformated.error.details = response.source.errors
         return h.response(reformated).code(reformated.error.code)
       }
 
