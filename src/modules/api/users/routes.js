@@ -23,7 +23,7 @@ module.exports = (server) => {
       options: {
         validate: inputValidations.loginPayload,
         handler: handlers.loginUser,
-        // response: outputValidations.AuthOnRegisterOutputValidationConfig,
+        response: outputValidations.AuthOnLoginOutputValidationConfig,
         description: 'Login a user',
         tags: ['api', 'users']
       }

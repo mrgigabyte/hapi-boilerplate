@@ -19,16 +19,16 @@ module.exports = (server) => {
         const user = await server.methods.services.users.getByEmail(payload.user.email)
 
         if (!user) {
-          return Boom.notFound('no account associated with given email id')
+          throw replyHelper.constructErrorResponse(Boom.notFound('no account associated with given email id'))
         }
 
         if (!user.validPassword(payload.user.password)) {
-          return Boom.unauthorized('email or password missmatch!')
+          return replyHelper.constructErrorResponse(Boom.unauthorized('email or password missmatch!'))
         }
 
         return h.response(constructAuthUserResponse(user)).code(200)
       } catch (err) {
-        return h.response(err).code(500)
+        return replyHelper.constructErrorResponse(Boom.badImplementation('Something went wrong! :(',err))
       }
     },
     /**

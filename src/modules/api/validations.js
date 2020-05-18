@@ -15,6 +15,7 @@ const ValidateErrorHandler = (request, h, error) => {
 }
 
 const ResponseErrorHandler = (request, h, error) => {
+  console.log(error)
   const message = {
     request: {
       info: request.info,

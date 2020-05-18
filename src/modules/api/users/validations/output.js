@@ -1,11 +1,10 @@
 const Joi = require('@hapi/joi')
 const _ = require('lodash')
 const {
-  // responseOptions,
   BadRequestStatus,
   // UnauthorizedStatus,
   // ForbiddenStatus,
-  // NotFoundStatus,
+  NotFoundStatus,
   ConflictStatus,
   // UnprocessableEntityStatus,
   InternalServerErrorStatus
@@ -20,7 +19,9 @@ const registerPayload = Joi.object().keys({
 })
 
 const AuthOnRegisterOutputValidationConfig = _.merge({}, InternalServerErrorStatus, BadRequestStatus, ConflictStatus, { status: { 201: registerPayload } })
+const AuthOnLoginOutputValidationConfig = _.merge({}, InternalServerErrorStatus, BadRequestStatus, NotFoundStatus, { status: { 200: registerPayload } })
 
 module.exports = {
-  AuthOnRegisterOutputValidationConfig
+  AuthOnRegisterOutputValidationConfig,
+  AuthOnLoginOutputValidationConfig
 }
