@@ -71,5 +71,9 @@ winston transport logger: log files in the database/log-files or the console.
 3. fixing the import statements for config in server.js and config/index.js
 
 ## Things to work on:
-1. output validations.
+1. output validations. (90% done)
 2. status code for input validations.
+
+## Possible Bugs:
+1. logging of sensitive user-info in the app.log 
+2. Improper error handling. 
