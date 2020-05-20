@@ -75,5 +75,10 @@ winston transport logger: log files in the database/log-files or the console.
 
 ## Possible Bugs:
 1. logging of sensitive user-info in the app.log  
-2. ```The following tasks did not complete: default, develop
-[19:43:14] Did you forget to signal async completion?``` Getting this on force shutting the application
+2. 
+```
+The following tasks did not complete: default, develop
+[19:43:14] Did you forget to signal async completion?
+````
+ 
+ Getting this on force shutting the application
