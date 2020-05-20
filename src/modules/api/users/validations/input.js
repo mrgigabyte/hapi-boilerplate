@@ -49,9 +49,16 @@ const getCurrentPayload = {
   failAction: validateOptions.failAction
 }
 
+const deleteCurrentPayload = {
+  headers: HeadersPayLoad,
+  options: validateOptions.options,
+  failAction: validateOptions.failAction
+}
+
 module.exports = {
   loginPayload,
   registerPayload,
   getCurrentPayload,
-  updatePayload
+  updatePayload,
+  deleteCurrentPayload
 }

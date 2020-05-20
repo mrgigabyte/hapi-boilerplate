@@ -53,6 +53,19 @@ module.exports = (server) => {
         description: 'Update existing user info',
         tags: ['api', 'users']
       }
+    },
+    // Delete Current User
+    {
+      method: 'DELETE',
+      path: '/user',
+      options: {
+        auth: 'jwt',
+        validate: inputValidations.deleteCurrentPayload,
+        handler: handlers.deleteUser,
+        response: outputValidations.AuthOnDeleteUserInfoValidationConfig,
+        description: 'Deleting existing user info',
+        tags: ['api', 'users']
+      }
     }
   ]
 }

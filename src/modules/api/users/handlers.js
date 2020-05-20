@@ -82,7 +82,27 @@ module.exports = (server) => {
           if (status) {
             return h.response({ message: 'Success!' }).code(201)
           } else {
-            return Boom.badRequest('Unable perform updation')
+            return Boom.badRequest('Unable to perform updation. Please try again later.')
+          }
+        }
+      } catch (err) {
+        return h.response(constructAuthUserResponse(err)).code(422)
+      }
+    },
+    /**
+     * DELETE /user
+     * @param {*} request
+     * @param {*} h
+     */
+    async deleteUser (request, h) {
+      try {
+        const authStatus = request.auth.credentials
+        if (authStatus) {
+          const status = await server.methods.services.users.deleteUser(authStatus.user)
+          if (status) {
+            return h.response({ message: 'Success!' }).code(201)
+          } else {
+            return Boom.badRequest('Unable to perform deletion. Please try again later.')
           }
         }
       } catch (err) {

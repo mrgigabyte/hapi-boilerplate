@@ -36,6 +36,10 @@ module.exports = (userModel) => {
     return User.update(user, { where: { email: authUser.email } })
   }
 
+  async function deleteUser (authUser) {
+    return User.destroy({ where: { id: authUser.id, username: authUser.username } })
+  }
+
   return [
     {
       name: 'services.users.create',
@@ -48,5 +52,9 @@ module.exports = (userModel) => {
     {
       name: 'services.users.updateUser',
       method: updateUser
+    },
+    {
+      name: 'services.users.deleteUser',
+      method: deleteUser
     }]
 }

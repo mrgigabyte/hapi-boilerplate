@@ -29,14 +29,20 @@ const PutUserInfoResponse = Joi.object().keys({
   message: Joi.string().valid('Success!')
 })
 
+const DeleteUserInfoResponse = Joi.object().keys({
+  message: Joi.string().valid('Success!')
+})
+
 const OnRegisterOutputValidationConfig = _.merge({}, InternalServerErrorStatus, BadRequestStatus, ConflictStatus, { status: { 201: UserInfoResponse } })
 const OnLoginOutputValidationConfig = _.merge({}, InternalServerErrorStatus, UnauthorizedStatus, BadRequestStatus, NotFoundStatus, { status: { 200: UserInfoResponse } })
 const AuthOnGetUserInfoValidationConfig = _.merge({}, InternalServerErrorStatus, UnauthorizedStatus, NotFoundStatus, { status: { 200: GetUserInfoResponse } })
-const AuthOnPutUserInfoValidationConfig = _.merge({}, InternalServerErrorStatus, UnauthorizedStatus, NotFoundStatus, ForbiddenStatus, { status: { 201: PutUserInfoResponse } })
+const AuthOnPutUserInfoValidationConfig = _.merge({}, InternalServerErrorStatus, UnauthorizedStatus, ForbiddenStatus, { status: { 201: PutUserInfoResponse } })
+const AuthOnDeleteUserInfoValidationConfig = _.merge({}, InternalServerErrorStatus, UnauthorizedStatus, ForbiddenStatus, { status: { 201: DeleteUserInfoResponse } })
 
 module.exports = {
   OnRegisterOutputValidationConfig,
   OnLoginOutputValidationConfig,
   AuthOnGetUserInfoValidationConfig,
-  AuthOnPutUserInfoValidationConfig
+  AuthOnPutUserInfoValidationConfig,
+  AuthOnDeleteUserInfoValidationConfig
 }
