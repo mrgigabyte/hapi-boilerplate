@@ -10,15 +10,41 @@ const errorSchema = require('./helpers').errorResponseSchema
 // --------------------------------------------------
 
 const ValidateErrorHandler = (request, h, error) => {
-  console.log('ay lmao')
   const response = constructErrorResponse(error, error.output.statusCode)
   return h.response(response).code(response.error.code).takeover()
 }
 
 const ResponseErrorHandler = (request, h, error) => {
   if (request.response.isBoom) {
-    if (request.response.output.statusCode) { return h.continue }
+    return BoomResponseErrorHandler(request, h)
   }
+  return ResponseErrorLogger(request, h, error)
+}
+
+const BoomResponseErrorHandler = (request, h) => {
+  const response = request.response
+  const reformated = {
+    error: {
+      code: response.output.payload.statusCode,
+      type: response.output.payload.error
+    }
+  }
+  const headers = response.output.headers
+  if (headers['WWW-Authenticate']) {
+    reformated.error.details = [{ message: headers['WWW-Authenticate'] }]
+  } else {
+    reformated.error.details = [{ message: response.output.payload.message }]
+  }
+
+  try {
+    Joi.attempt(reformated, schemaForStatusCode(reformated.error.code))
+    return h.response(reformated).code(reformated.error.code)
+  } catch (err) {
+    return ResponseErrorLogger(request, h, err)
+  }
+}
+
+const ResponseErrorLogger = (request, h, error) => {
   const message = {
     request: {
       info: request.info,
@@ -44,6 +70,10 @@ const ResponseErrorHandler = (request, h, error) => {
 
   return h.response({ response }).code(response.error.code).takeover()
 }
+
+// --------------------------------------------------
+//    Schema Options
+// --------------------------------------------------
 
 const validateOptions = {
   options: { abortEarly: true },
@@ -126,7 +156,6 @@ module.exports = {
 
   validateOptions,
   responseOptions,
-  ValidateErrorHandler,
   HeadersPayLoad,
   BadRequestStatus,
   UnauthorizedStatus,

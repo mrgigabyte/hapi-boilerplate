@@ -75,23 +75,23 @@ function sequelizeResponseValidationErrorHandler (err, statusCode) {
 const errorHandlers = [joiResponseErrorHandler, sequelizeResponseValidationErrorHandler, defaultResponseErrorHandler]
 
 const constructErrorResponse = (err, statusCode) => {
-  if (!statusCode) {
-    if (err.isBoom) {
-      console.log(err)
-      const reformated = {
-        error: {
-          code: err.output.payload.statusCode,
-          type: err.output.payload.error,
-          details: [{
-            message: err.output.payload.message
-          }]
-        }
-      }
-      err.reformat()
-      err.output.payload = reformated
-      return err
-    }
-  }
+  // if (!statusCode) {
+  //   if (err.isBoom) {
+  //     console.log(err)
+  //     const reformated = {
+  //       error: {
+  //         code: err.output.payload.statusCode,
+  //         type: err.output.payload.error,
+  //         details: [{
+  //           message: err.output.payload.message
+  //         }]
+  //       }
+  //     }
+  //     err.reformat()
+  //     err.output.payload = reformated
+  //     return err
+  //   }
+  // }
 
   let response
   for (const handler in errorHandlers) {
