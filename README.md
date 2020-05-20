@@ -46,8 +46,7 @@ Minimal structural and lexical changes:
 Libraries which might be considered for future work:
 
 1. node-schedule
-2. handlebars
-3. chai/mocha
+
 
 Done:
 
@@ -59,7 +58,7 @@ Done:
 6. brypt
 7. jsonwebtoken
 8. Boom 
-
+9. chai/mocha
 winston transport logger: log files in the database/log-files or the console. 
 
 
@@ -71,9 +70,10 @@ winston transport logger: log files in the database/log-files or the console.
 3. fixing the import statements for config in server.js and config/index.js
 
 ## Things to work on:
-1. output validations. (90% done)
-2. status code for input validations.
+1. Improper error handling.
+2. Tests in chai and mocha
 
 ## Possible Bugs:
-1. logging of sensitive user-info in the app.log 
-2. Improper error handling. 
+1. logging of sensitive user-info in the app.log  
+2. ```The following tasks did not complete: default, develop
+[19:43:14] Did you forget to signal async completion?``` Getting this on force shutting the application
