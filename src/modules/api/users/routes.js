@@ -11,7 +11,7 @@ module.exports = (server) => {
       options: {
         validate: inputValidations.registerPayload,
         handler: handlers.createUser,
-        response: outputValidations.AuthOnRegisterOutputValidationConfig,
+        response: outputValidations.OnRegisterOutputValidationConfig,
         description: 'Register a user',
         tags: ['api', 'users']
       }
@@ -23,7 +23,7 @@ module.exports = (server) => {
       options: {
         validate: inputValidations.loginPayload,
         handler: handlers.loginUser,
-        response: outputValidations.AuthOnLoginOutputValidationConfig,
+        response: outputValidations.OnLoginOutputValidationConfig,
         description: 'Login a user',
         tags: ['api', 'users']
       }
@@ -36,7 +36,7 @@ module.exports = (server) => {
         auth: 'jwt',
         validate: inputValidations.getCurrentPayload,
         handler: handlers.getCurrentUser,
-        // response: outputValidations.AuthOnRegisterOutputValidationConfig,
+        response: outputValidations.AuthOnGetUserInfoValidationConfig,
         description: 'Get current user info',
         tags: ['api', 'users']
       }

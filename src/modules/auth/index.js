@@ -15,9 +15,15 @@ const register = async (server, options) => {
     }
   }
 
+  const errorFunc = function (err, request, h) {
+    // For writing custom error
+    return err
+  }
+
   server.auth.strategy('jwt', 'jwt', {
     key: config.auth.secret,
-    validate: validate
+    validate: validate,
+    errorFunc: errorFunc
   })
 }
 

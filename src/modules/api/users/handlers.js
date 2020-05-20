@@ -19,7 +19,7 @@ module.exports = (server) => {
         const user = await server.methods.services.users.getByEmail(payload.user.email)
 
         if (!user) {
-          throw replyHelper.constructErrorResponse(Boom.notFound('no account associated with given email id'))
+          return replyHelper.constructErrorResponse(Boom.notFound('no account associated with given email id'))
         }
 
         if (!user.validPassword(payload.user.password)) {
@@ -28,7 +28,7 @@ module.exports = (server) => {
 
         return h.response(constructAuthUserResponse(user)).code(200)
       } catch (err) {
-        return replyHelper.constructErrorResponse(Boom.badImplementation('Something went wrong! :(',err))
+        return replyHelper.constructErrorResponse(Boom.badImplementation('Something went wrong! :(', err))
       }
     },
     /**
@@ -53,8 +53,13 @@ module.exports = (server) => {
      */
     async getCurrentUser (request, h) {
       try {
+        console.log('geeferferfe')
+        if (!request.auth.credentials) {
+          return replyHelper.constructErrorResponse(Boom.notFound('User not found'))
+        }
         return h.response(request.auth.credentials.user)
       } catch (err) {
+        console.log('hey', err)
         return h.response(err).code(422)
       }
     },

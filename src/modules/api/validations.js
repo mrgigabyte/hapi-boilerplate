@@ -10,12 +10,15 @@ const errorSchema = require('./helpers').errorResponseSchema
 // --------------------------------------------------
 
 const ValidateErrorHandler = (request, h, error) => {
+  console.log('ay lmao')
   const response = constructErrorResponse(error, error.output.statusCode)
   return h.response(response).code(response.error.code).takeover()
 }
 
 const ResponseErrorHandler = (request, h, error) => {
-  console.log(error)
+  if (request.response.isBoom) {
+    if (request.response.output.statusCode) { return h.continue }
+  }
   const message = {
     request: {
       info: request.info,
