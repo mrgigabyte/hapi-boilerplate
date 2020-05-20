@@ -53,13 +53,18 @@ module.exports = (server) => {
      */
     async getCurrentUser (request, h) {
       try {
-        console.log('geeferferfe')
         if (!request.auth.credentials) {
           Boom.notFound('User not found')
         }
-        return h.response(request.auth.credentials.user)
+        const user = request.auth.credentials.user
+        const response = {
+          id: user.id,
+          name: user.name,
+          username: user.username,
+          email: user.email
+        }
+        return h.response(response)
       } catch (err) {
-        console.log('hey', err)
         return h.response(err).code(422)
       }
     },

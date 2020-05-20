@@ -268,3 +268,15 @@
 {"message":"Database & tables created!","level":"info","timestamp":"5/20/2020, 4:27:58 PM"}
 {"occurence":"ResponseErrorHandler","level":"error","message":{"request":{"info":{"received":1589972282952,"remoteAddress":"127.0.0.1","remotePort":56430,"referrer":"http://localhost:8080/documentation","host":"localhost:8080","hostname":"localhost","id":"1589972282952:mr-gigabyte:19505:kaf8fw1e:10000","acceptEncoding":"gzip","cors":null,"responded":0,"completed":0},"auth":{"isAuthenticated":false,"isAuthorized":false,"credentials":null,"artifacts":null,"strategy":null,"mode":"required","error":null},"headers":{"host":"localhost:8080","connection":"keep-alive","accept":"application/json","authorization":"asds","user-agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/79.0.3945.79 Chrome/79.0.3945.79 Safari/537.36","sec-fetch-site":"same-origin","sec-fetch-mode":"cors","referer":"http://localhost:8080/documentation","accept-encoding":"gzip, deflate, br","accept-language":"en-GB,en-US;q=0.9,en;q=0.8","cookie":"io=QFJ39Jij-0lahI7UAAAB"},"method":"get","path":"/user"},"response":{"error":{"details":[{"message":"\"details\" is not allowed","path":["details"],"type":"object.unknown","context":{"child":"details","label":"details","value":[{"message":"Token error=\"Invalid token format\""}],"key":"details"}}]}}},"timestamp":"5/20/2020, 4:28:02 PM"}
 {"message":"Database & tables created!","level":"info","timestamp":"5/20/2020, 4:28:37 PM"}
+{"message":"Database & tables created!","level":"info","timestamp":"5/20/2020, 5:03:45 PM"}
+{"message":"Database & tables created!","level":"info","timestamp":"5/20/2020, 5:37:16 PM"}
+{"message":"Database & tables created!","level":"info","timestamp":"5/20/2020, 5:49:38 PM"}
+{"message":"Database & tables created!","level":"info","timestamp":"5/20/2020, 5:49:59 PM"}
+{"message":"Database & tables created!","level":"info","timestamp":"5/20/2020, 5:50:09 PM"}
+{"message":"Database & tables created!","level":"info","timestamp":"5/20/2020, 5:57:30 PM"}
+{"message":"Database & tables created!","level":"info","timestamp":"5/20/2020, 5:59:06 PM"}
+{"message":"Database & tables created!","level":"info","timestamp":"5/20/2020, 6:02:27 PM"}
+{"message":"Database & tables created!","level":"info","timestamp":"5/20/2020, 6:02:47 PM"}
+{"message":"Database & tables created!","level":"info","timestamp":"5/20/2020, 6:07:56 PM"}
+{"message":"Database & tables created!","level":"info","timestamp":"5/20/2020, 6:18:56 PM"}
+{"message":"Database & tables created!","level":"info","timestamp":"5/20/2020, 6:19:38 PM"}

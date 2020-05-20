@@ -49,7 +49,7 @@ module.exports = (server) => {
         auth: 'jwt',
         validate: inputValidations.updatePayload,
         handler: handlers.updateUser,
-        // response: outputValidations.AuthOnRegisterOutputValidationConfig,
+        response: outputValidations.AuthOnPutUserInfoValidationConfig,
         description: 'Update existing user info',
         tags: ['api', 'users']
       }
