@@ -73,6 +73,9 @@ winston transport logger: log files in the database/log-files or the console.
 1. Improper error handling.
 2. Tests in chai and mocha
 
+## Possible inclusions in future versions:
+1. Adding timestamp key to the error response
+
 ## Possible Bugs:
 1. logging of sensitive user-info in the app.log  
 2. 

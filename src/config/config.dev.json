@@ -18,7 +18,7 @@
     "database": {
         "host": "localhost",
         "port": 5432,
-        "name": "mrgigabyte",
+        "name": "hapi_boilerplate",
         "username": "mrgigabyte",
         "password": "abc@123",
         "pool": {
