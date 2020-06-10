@@ -15,7 +15,7 @@ const env = process.env.NODE_ENV || 'dev'
 const config = {
   dev: {
     tasks: ['build', 'develop'],
-    startPoint: 'build/src/server.js',
+    startPoint: 'build/src/index.js',
     config: {
       src: 'src/**/*.json',
       dest: './build/src/'
@@ -85,13 +85,13 @@ const config = {
 //   return watcher
 // }
 
-function cleaning() {
+function cleaning () {
   return gulp.src(config[env].clean.src, {
     read: false
   }).pipe(clean())
 }
 
-function compileJs() {
+function compileJs () {
   return gulp.src(config[env].compile.src)
     .pipe(babel({
       presets: ['@babel/preset-env']
@@ -99,12 +99,12 @@ function compileJs() {
     .pipe(gulp.dest(config[env].compile.dest))
 }
 
-function copyConf() {
+function copyConf () {
   return gulp.src(config[env].config.src)
     .pipe(gulp.dest(config[env].config.dest))
 }
 
-function eslint() {
+function eslint () {
   return gulp.src(['src/**/*.js', 'test/**/*.js'])
     .pipe(standard())
     .pipe(standard.reporter('default', {
@@ -113,7 +113,7 @@ function eslint() {
     }))
 }
 
-function develop(cb) {
+function develop (cb) {
   if (devBuild) {
     cb()
     return nodemon({
@@ -127,7 +127,6 @@ function develop(cb) {
       tasks: function (changedFiles) {
         const tasks = ['build']
         if (!changedFiles) {
-
           return tasks
         }
 
@@ -155,11 +154,10 @@ function develop(cb) {
         return []
       }
     })
-      .on('crash', (err) => {
+      .on('crash', () => {
         // console.error(err)
         console.error('\nApplication has crashed!\n')
       })
-
   }
 }
 

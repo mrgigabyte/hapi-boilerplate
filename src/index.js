@@ -1,7 +1,19 @@
-// // const { server } = require('./server')
-// // const {  }
+// const { server } = require('./server')
+// const {  }
 
 // const { server } = require('./server')
+
+const { start } = require('./server')
+const { logger } = require('winston')
+
+try {
+  start()
+} catch (err) {
+  console.log(err)
+  logger.error(err)
+  process.exit(1)
+}
+
 // const config = require('./')
 // import * as Configs from "./config";
 // import * as Database from './models';

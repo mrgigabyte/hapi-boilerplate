@@ -12,13 +12,12 @@
         "host": "localhost",
         "port": 8080,
         "plugins": [
-            "swagger"
         ]
     },
     "database": {
         "host": "localhost",
         "port": 5432,
-        "name": "mrgigabyte",
+        "name": "hapi_boilerplate",
         "username": "mrgigabyte",
         "password": "abc@123",
         "pool": {
@@ -29,19 +28,5 @@
         },
         "dialect": "postgres"
     },
-    "plugins": {
-        "hapi-swagger": {
-            "info": {
-                "title": "hapi-boilerplate",
-                "version": "1.0.0"
-            },
-            "securityDefinitions": {
-                "jwt": {
-                    "type": "apiKey",
-                    "name": "Authorization",
-                    "in": "header"
-                }
-            }
-        }
-    }
+    "plugins": {}
 }
