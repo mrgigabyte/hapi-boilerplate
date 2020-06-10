@@ -85,6 +85,19 @@ const config = {
 //   return watcher
 // }
 
+// module.exports = {
+//   presets: [
+//     [
+//       '@babel/preset-env',
+//       {
+//         targets: {
+//           esmodules: true,
+//         },
+//       },
+//     ],
+//   ],
+// }
+
 function cleaning () {
   return gulp.src(config[env].clean.src, {
     read: false
@@ -94,7 +107,16 @@ function cleaning () {
 function compileJs () {
   return gulp.src(config[env].compile.src)
     .pipe(babel({
-      presets: ['@babel/preset-env']
+      presets: [
+        [
+          '@babel/preset-env',
+          {
+            targets: {
+              esmodules: true,
+            },
+          },
+        ],
+      ]
     }))
     .pipe(gulp.dest(config[env].compile.dest))
 }

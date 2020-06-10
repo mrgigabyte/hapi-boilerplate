@@ -71,17 +71,12 @@ winston transport logger: log files in the database/log-files or the console.
 
 ## Things to work on:
 1. Improper error handling.
-2. Tests in chai and mocha
 
 ## Possible inclusions in future versions:
 1. Adding timestamp key to the error response
 
 ## Possible Bugs:
 1. logging of sensitive user-info in the app.log  
-2. 
-```
-The following tasks did not complete: default, develop
-[19:43:14] Did you forget to signal async completion?
-````
- 
- Getting this on force shutting the application
+
+
+
