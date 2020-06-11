@@ -31,7 +31,7 @@ const config = {
       dest: './build/src/'
     },
     eslint: {
-      files: '"src/**/*.js" "test/**/*.js"'
+      files: ['src/**/*.js', 'test/**/*.js']
     }
 
   },
@@ -57,7 +57,7 @@ const config = {
       dest: './build/src/'
     },
     eslint: {
-      files: '"src/**/*.js" "test/**/*.js"'
+      files: ['test/**/*.js']
     }
   }
 }
@@ -112,10 +112,10 @@ function compileJs () {
           '@babel/preset-env',
           {
             targets: {
-              esmodules: true,
-            },
-          },
-        ],
+              esmodules: true
+            }
+          }
+        ]
       ]
     }))
     .pipe(gulp.dest(config[env].compile.dest))
@@ -127,10 +127,10 @@ function copyConf () {
 }
 
 function eslint () {
-  return gulp.src(['src/**/*.js', 'test/**/*.js'])
+  return gulp.src(config[env].eslint.files)
     .pipe(standard())
     .pipe(standard.reporter('default', {
-      breakOnError: true,
+      breakOnError: false,
       quiet: true
     }))
 }
@@ -163,7 +163,7 @@ function develop (cb) {
             .src([`${path}`])
             .pipe(standard())
             .pipe(standard.reporter('default', {
-              breakOnError: true,
+              breakOnError: false,
               quiet: true
             }))
             // .pipe(shell([`standard ${path}`]))

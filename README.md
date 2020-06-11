@@ -77,6 +77,6 @@ winston transport logger: log files in the database/log-files or the console.
 
 ## Possible Bugs:
 1. logging of sensitive user-info in the app.log  
-
+2. `The following leaks were detected:@@any-promise/REGISTRATION` global variable leak. `--leaks` flag has been used to ignore the global variable leak for the time being
 
 
